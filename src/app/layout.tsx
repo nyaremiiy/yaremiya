@@ -1,10 +1,23 @@
 import type { Metadata } from 'next';
-import { Sansation } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
+import { cn } from '@/lib/utils';
 
-const sansation = Sansation({
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
+const sansation = localFont({
+  src: [
+    {
+      path: '../fonts/Sansation-Light.ttf',
+      weight: '300',
+    },
+    {
+      path: '../fonts/Sansation-Regular.ttf',
+      weight: '400',
+    },
+    {
+      path: '../fonts/Sansation-Bold.ttf',
+      weight: '700',
+    },
+  ],
   variable: '--font-sansation',
 });
 
@@ -19,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`${sansation.variable}  h-full antialiased`}>
+    <html lang='en' className={cn('h-full', 'antialiased', sansation.variable)}>
       <body className='min-h-full flex flex-col'>{children}</body>
     </html>
   );
